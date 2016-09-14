@@ -10,7 +10,8 @@
         <item name="colorPrimaryDark">#34b8f4</item>
         <!--Window color-->
         <item name="android:windowBackground">@android:color/white</item>
-        <item name="android:statusBarColor">#88009688</item>
+        <item name="android:statusBarColor">#34b8f4</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
     <style name="ActionButton.Overflow.ZhiHu" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
         <item name="android:src">@drawable/menu_2</item>
