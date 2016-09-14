@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LooksWrold</string>
+    <string name="drawer_open">opne</string>
+    <string name="drawer_close">close</string>
+</resources>
