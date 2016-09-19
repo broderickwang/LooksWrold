@@ -11,4 +11,7 @@
     <color name="color3">#CCFFFF</color>
 
     <color name="bgcolor">#FDFDFD</color>
+
+    <color name="red">#FF4640</color>
+    <color name="green">#40FF70</color>
 </resources>

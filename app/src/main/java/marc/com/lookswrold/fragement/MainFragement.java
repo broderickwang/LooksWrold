@@ -6,16 +6,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import marc.com.lookswrold.R;
-import marc.com.lookswrold.bean.StartUser;
-import marc.com.lookswrold.face.GetZhihuService;
+import marc.com.lookswrold.bean.DateBean;
+import marc.com.lookswrold.face.GetDateService;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
@@ -25,12 +25,24 @@ import retrofit.Retrofit;
 /**
  * Created by Broderick on 16/9/12.
  */
-public class TestFragement extends Fragment {
-	static String BASE_URL = "http://news-at.zhihu.com";
-	@Bind(R.id.image)
-	ImageView image;
-	@Bind(R.id.name)
-	TextView name;
+public class MainFragement extends Fragment {
+
+	@Bind(R.id.yangli)
+	TextView yangli;
+	@Bind(R.id.yinli)
+	TextView yinli;
+	@Bind(R.id.wuxing)
+	TextView wuxing;
+	@Bind(R.id.chongsha)
+	TextView chongsha;
+	@Bind(R.id.jishen)
+	TextView jishen;
+	@Bind(R.id.xs)
+	TextView xs;
+	@Bind(R.id.yi)
+	TextView yi;
+	@Bind(R.id.ji)
+	TextView ji;
 
 	@Nullable
 	@Override
@@ -44,20 +56,26 @@ public class TestFragement extends Fragment {
 
 	public void getData() {
 		Retrofit retrofit = new Retrofit.Builder()
-				.baseUrl(BASE_URL)
+				.baseUrl(DateBean.BASE_URL)
 				.addConverterFactory(GsonConverterFactory.create())
 				.build();
 
-		GetZhihuService github = retrofit.create(GetZhihuService.class);
-		Call<StartUser> call = github.getSplash("1080*1776");
+		GetDateService getDateService = retrofit.create(GetDateService.class);
 
-		call.enqueue(new Callback<StartUser>() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String date = sdf.format(new Date());
+
+		Call<DateBean> call = getDateService.getLHL(date, DateBean.APP_KEY);
+
+		call.enqueue(new Callback<DateBean>() {
 			@Override
-			public void onResponse(Response<StartUser> response, Retrofit retrofit) {
-				Glide.with(getContext())
-						.load(response.body().getImg())
-						.into(image);
-				name.setText(response.body().getText());
+			public void onResponse(Response<DateBean> response, Retrofit retrofit) {
+				DateBean bean = response.body();
+				DateBean.ResultBean resultBean = bean.getResult();
+				yangli.setText(resultBean.getYangli());
+				yinli.setText(resultBean.getYinli());
+
+
 			}
 
 			@Override

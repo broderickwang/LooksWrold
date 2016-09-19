@@ -16,6 +16,7 @@ import butterknife.ButterKnife;
 import marc.com.lookswrold.R;
 import marc.com.lookswrold.adapter.ZHCommAdaptor;
 import marc.com.lookswrold.bean.CommBean;
+import marc.com.lookswrold.bean.CommShortBean;
 import marc.com.lookswrold.face.GetZhihuService;
 import marc.com.lookswrold.fragement.ZhihuFragement;
 import retrofit.Call;
@@ -81,5 +82,16 @@ public class CommActivity extends AppCompatActivity {
 				Log.e("TAG", "onFailure: ", t);
 			}
 		});
+	}
+
+	private void getData2(){
+		Retrofit retrofit = new Retrofit.Builder()
+				.baseUrl(ZhihuFragement.BASE_URL)
+				.addConverterFactory(GsonConverterFactory.create())
+				.build();
+
+		GetZhihuService getZhihuService = retrofit.create(GetZhihuService.class);
+		Call<CommShortBean> call = getZhihuService.getShortComment(id);
+//		call.enqueue();
 	}
 }

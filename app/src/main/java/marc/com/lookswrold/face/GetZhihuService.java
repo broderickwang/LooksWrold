@@ -5,8 +5,10 @@ import com.squareup.okhttp.ResponseBody;
 import java.util.List;
 
 import marc.com.lookswrold.bean.CommBean;
+import marc.com.lookswrold.bean.CommShortBean;
 import marc.com.lookswrold.bean.Contributor;
 import marc.com.lookswrold.bean.StartUser;
+import marc.com.lookswrold.bean.ZhihuDescBean;
 import retrofit.Call;
 import retrofit.http.GET;
 import retrofit.http.Path;
@@ -25,6 +27,12 @@ public interface GetZhihuService {
 	@GET("/api/4/news/{time}")
 	Call<ResponseBody> getZhihuLastData(@Path("time")String time);
 
+	@GET("/api/4/news/{time}")
+	Call<ZhihuDescBean> getZhihuDescData(@Path("time")String time);
+
 	@GET("/api/4/story/{id}/long-comments")
 	Call<CommBean> getLongComment(@Path("id")String id);
+
+	@GET("/api/4/story/{id}/short-comments")
+	Call<CommShortBean> getShortComment(@Path("id")String id);
 }

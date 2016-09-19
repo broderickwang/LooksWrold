@@ -1,8 +1,11 @@
 package marc.com.lookswrold.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
@@ -35,10 +38,14 @@ public class SplashActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
 		ButterKnife.bind(this);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			// 设置状态栏透明
+			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+		}
 		getData();
 
 		AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
-		alphaAnimation.setDuration(6000);
+		alphaAnimation.setDuration(1000);
 		spalsh.startAnimation(alphaAnimation);
 		alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
 			@Override
@@ -51,8 +58,31 @@ public class SplashActivity extends AppCompatActivity {
 
 			@Override
 			public void onAnimationEnd(Animation animation) {
+				/*try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				startActivity(new Intent(SplashActivity.this, Main.class));
-				SplashActivity.this.finish();
+				SplashActivity.this.finish();*/
+				new Handler().postDelayed(new Runnable() {
+
+                /*
+                 * Showing splash screen with a timer. This will be useful when you
+                 * want to show case your app logo / company
+                 */
+
+					@Override
+					public void run() {
+						// This method will be executed once the timer is over
+						// Start your app main activity
+						Intent i = new Intent(SplashActivity.this, Main.class);
+						startActivity(i);
+
+						// close this activity
+						finish();
+					}
+				}, 5000);
 			}
 		});
 	}

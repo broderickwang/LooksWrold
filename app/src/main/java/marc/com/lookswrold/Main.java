@@ -24,10 +24,11 @@ import butterknife.ButterKnife;
 import marc.com.lookswrold.bean.StartUser;
 import marc.com.lookswrold.face.GetZhihuService;
 import marc.com.lookswrold.fragement.GithubFragement;
-import marc.com.lookswrold.fragement.TestFragement;
+import marc.com.lookswrold.fragement.Main2Fragement;
+import marc.com.lookswrold.fragement.NewsFragement;
+import marc.com.lookswrold.fragement.MainFragement;
 import marc.com.lookswrold.fragement.ZhihuFragement;
 import marc.com.lookswrold.util.GlideCircleTransform;
-import marc.com.lookswrold.util.GlideRoundTransform;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
@@ -47,9 +48,10 @@ public class Main extends AppCompatActivity
 	Toolbar toolbar;
 	FragmentTransaction trance;
 
-	TestFragement testFragement;
+	Main2Fragement main2Fragement;
 	GithubFragement githubFragement;
 	ZhihuFragement zhihuFragement;
+	NewsFragement newsFragement;
 	ActionBarDrawerToggle mDrawerToggle;
 	ImageView head_tx;
 	TextView head_name;
@@ -77,7 +79,7 @@ public class Main extends AppCompatActivity
 		initView();
 
 		trance = getSupportFragmentManager().beginTransaction();
-		trance.replace(R.id.frame,new TestFragement());
+		trance.replace(R.id.frame,new Main2Fragement());
 		trance.addToBackStack(null);
 		trance.commit();
 
@@ -90,9 +92,10 @@ public class Main extends AppCompatActivity
 	}
 
 	private void initView(){
-		testFragement = new TestFragement();
+		main2Fragement = new Main2Fragement();
 		githubFragement = new GithubFragement();
 		zhihuFragement = new ZhihuFragement();
+		newsFragement = new NewsFragement();
 		getPhoto();
 	}
 	public void getPhoto() {
@@ -144,12 +147,19 @@ public class Main extends AppCompatActivity
 		switch (item.getItemId()){
 			case R.id.github:
 				trance.replace(R.id.frame,githubFragement);
+				toolbar.setTitle("GitHub");
 				break;
 			case R.id.home:
-				trance.replace(R.id.frame,testFragement);
+				trance.replace(R.id.frame,main2Fragement);
+				toolbar.setTitle("看天下");
 				break;
 			case R.id.zh:
 				trance.replace(R.id.frame,zhihuFragement);
+				toolbar.setTitle("知乎日报");
+				break;
+			case R.id.news:
+				trance.replace(R.id.frame,newsFragement);
+				toolbar.setTitle("今日头条");
 				break;
 		}
 		trance.addToBackStack(null);
