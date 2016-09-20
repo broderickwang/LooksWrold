@@ -20,7 +20,8 @@
                 android:gravity="center"
                 android:text="2014-09-11"
                 android:textColor="@android:color/black"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:drawableRight="@drawable/calendar"/>
             <TextView
                 android:id="@+id/yinli1"
                 android:layout_below="@+id/yangli1"

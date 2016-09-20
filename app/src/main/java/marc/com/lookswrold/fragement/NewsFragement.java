@@ -19,6 +19,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import marc.com.lookswrold.R;
+import marc.com.lookswrold.activity.NewsImgActivity;
 import marc.com.lookswrold.activity.WebActivity;
 import marc.com.lookswrold.adapter.NewsAdaptor;
 import marc.com.lookswrold.bean.NewsBean;
@@ -79,6 +80,14 @@ public class NewsFragement extends Fragment {
 				Intent i = new Intent(getContext(), WebActivity.class);
 				i.putExtra("url", data);
 				i.putExtra("type", "news");
+				startActivity(i);
+			}
+		});
+		adaptor.setLongPress(new NewsAdaptor.ItemLongPress() {
+			@Override
+			public void OnItemLongPress(View view, String data) {
+				Intent i = new Intent(getContext(), NewsImgActivity.class);
+				i.putExtra("imgs", data);
 				startActivity(i);
 			}
 		});

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import marc.com.lookswrold.Main;
 import marc.com.lookswrold.R;
 import marc.com.lookswrold.bean.StartUser;
@@ -32,6 +34,8 @@ public class SplashActivity extends AppCompatActivity {
 	ImageView spalsh;
 	@Bind(R.id.name)
 	TextView name;
+	@Bind(R.id.jump)
+	Button jump;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class SplashActivity extends AppCompatActivity {
 			// 设置状态栏透明
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 		}
+		jump.getBackground().setAlpha(100);
 		getData();
 
 		AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
@@ -78,11 +83,9 @@ public class SplashActivity extends AppCompatActivity {
 						// Start your app main activity
 						Intent i = new Intent(SplashActivity.this, Main.class);
 						startActivity(i);
-
-						// close this activity
 						finish();
 					}
-				}, 5000);
+				}, 7000);
 			}
 		});
 	}
@@ -99,7 +102,7 @@ public class SplashActivity extends AppCompatActivity {
 		call.enqueue(new Callback<StartUser>() {
 			@Override
 			public void onResponse(Response<StartUser> response, Retrofit retrofit) {
-				if(response.body() != null) {
+				if (response.body() != null) {
 					Glide.with(SplashActivity.this)
 							.load(response.body().getImg())
 							.into(spalsh);
@@ -112,5 +115,12 @@ public class SplashActivity extends AppCompatActivity {
 
 			}
 		});
+	}
+
+	@OnClick(R.id.jump)
+	public void onClick() {
+		Intent i = new Intent(SplashActivity.this, Main.class);
+		startActivity(i);
+		finish();
 	}
 }
