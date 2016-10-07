@@ -2,10 +2,10 @@ package marc.com.lookswrold.face;
 
 import marc.com.lookswrold.bean.NewsBean;
 import marc.com.lookswrold.bean.StartUser;
-import retrofit.Call;
-import retrofit.http.GET;
-import retrofit.http.Path;
-import retrofit.http.Query;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by Broderick on 16/9/18.

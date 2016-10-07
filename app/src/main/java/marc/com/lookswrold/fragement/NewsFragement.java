@@ -24,11 +24,12 @@ import marc.com.lookswrold.activity.WebActivity;
 import marc.com.lookswrold.adapter.NewsAdaptor;
 import marc.com.lookswrold.bean.NewsBean;
 import marc.com.lookswrold.face.GetNewsService;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+//import retrofit.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Broderick on 16/9/18.
@@ -117,18 +118,19 @@ public class NewsFragement extends Fragment {
 
 		call.enqueue(new Callback<NewsBean>() {
 			@Override
-			public void onResponse(Response<NewsBean> response, Retrofit retrofit) {
+			public void onResponse(Call<NewsBean> call, Response<NewsBean> response) {
+
 				NewsBean body = response.body();
 				NewsBean.ResultBean resultBean = body.getResult();
 				adaptor.setData(resultBean.getData());
 				adaptor.notifyDataSetChanged();
 				dlg.dismiss();
 				if(newsRef != null)
-				newsRef.setRefreshing(false);
+					newsRef.setRefreshing(false);
 			}
 
 			@Override
-			public void onFailure(Throwable t) {
+			public void onFailure(Call<NewsBean> call, Throwable t) {
 
 			}
 		});
@@ -145,7 +147,7 @@ public class NewsFragement extends Fragment {
 
 		call.enqueue(new Callback<NewsBean>() {
 			@Override
-			public void onResponse(Response<NewsBean> response, Retrofit retrofit) {
+			public void onResponse(Call<NewsBean> call, Response<NewsBean> response) {
 				NewsBean body = response.body();
 				NewsBean.ResultBean resultBean = body.getResult();
 				adaptor.setData(resultBean.getData());
@@ -154,7 +156,7 @@ public class NewsFragement extends Fragment {
 			}
 
 			@Override
-			public void onFailure(Throwable t) {
+			public void onFailure(Call<NewsBean> call, Throwable t) {
 
 			}
 		});
@@ -171,7 +173,7 @@ public class NewsFragement extends Fragment {
 
 		call.enqueue(new Callback<NewsBean>() {
 			@Override
-			public void onResponse(Response<NewsBean> response, Retrofit retrofit) {
+			public void onResponse(Call<NewsBean> call, Response<NewsBean> response) {
 				NewsBean body = response.body();
 				NewsBean.ResultBean resultBean = body.getResult();
 				adaptor.setData(resultBean.getData());
@@ -180,7 +182,7 @@ public class NewsFragement extends Fragment {
 			}
 
 			@Override
-			public void onFailure(Throwable t) {
+			public void onFailure(Call<NewsBean> call, Throwable t) {
 
 			}
 		});

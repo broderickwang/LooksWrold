@@ -16,11 +16,12 @@ import butterknife.ButterKnife;
 import marc.com.lookswrold.R;
 import marc.com.lookswrold.bean.DateBean;
 import marc.com.lookswrold.face.GetDateService;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+//import retrofit.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Broderick on 16/9/12.
@@ -69,17 +70,15 @@ public class MainFragement extends Fragment {
 
 		call.enqueue(new Callback<DateBean>() {
 			@Override
-			public void onResponse(Response<DateBean> response, Retrofit retrofit) {
+			public void onResponse(Call<DateBean> call, Response<DateBean> response) {
 				DateBean bean = response.body();
 				DateBean.ResultBean resultBean = bean.getResult();
 				yangli.setText(resultBean.getYangli());
 				yinli.setText(resultBean.getYinli());
-
-
 			}
 
 			@Override
-			public void onFailure(Throwable t) {
+			public void onFailure(Call<DateBean> call, Throwable t) {
 
 			}
 		});

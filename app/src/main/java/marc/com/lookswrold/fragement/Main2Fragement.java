@@ -26,11 +26,12 @@ import butterknife.OnClick;
 import marc.com.lookswrold.R;
 import marc.com.lookswrold.bean.DateBean;
 import marc.com.lookswrold.face.GetDateService;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+//import retrofit.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Broderick on 16/9/19.
@@ -112,7 +113,7 @@ public class Main2Fragement extends Fragment {
 
 		call.enqueue(new Callback<DateBean>() {
 			@Override
-			public void onResponse(Response<DateBean> response, Retrofit retrofit) {
+			public void onResponse(Call<DateBean> call, Response<DateBean> response) {
 				DateBean bean = response.body();
 				DateBean.ResultBean resultBean = bean.getResult();
 				if (resultBean != null) {
@@ -132,11 +133,10 @@ public class Main2Fragement extends Fragment {
 					else
 						pengzubaiji1.setText(a);
 				}
-
 			}
 
 			@Override
-			public void onFailure(Throwable t) {
+			public void onFailure(Call<DateBean> call, Throwable t) {
 
 			}
 		});
@@ -157,7 +157,7 @@ public class Main2Fragement extends Fragment {
 
 		call.enqueue(new Callback<DateBean>() {
 			@Override
-			public void onResponse(Response<DateBean> response, Retrofit retrofit) {
+			public void onResponse(Call<DateBean> call, Response<DateBean> response) {
 				DateBean bean = response.body();
 				DateBean.ResultBean resultBean = bean.getResult();
 				if (resultBean != null) {
@@ -181,7 +181,7 @@ public class Main2Fragement extends Fragment {
 			}
 
 			@Override
-			public void onFailure(Throwable t) {
+			public void onFailure(Call<DateBean> call, Throwable t) {
 
 			}
 		});

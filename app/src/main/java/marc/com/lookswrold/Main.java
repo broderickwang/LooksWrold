@@ -29,11 +29,12 @@ import marc.com.lookswrold.fragement.NewsFragement;
 import marc.com.lookswrold.fragement.MainFragement;
 import marc.com.lookswrold.fragement.ZhihuFragement;
 import marc.com.lookswrold.util.GlideCircleTransform;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+//import retrofit.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Main extends AppCompatActivity
 		implements NavigationView.OnNavigationItemSelectedListener {
@@ -115,7 +116,7 @@ public class Main extends AppCompatActivity
 
 		call.enqueue(new Callback<StartUser>() {
 			@Override
-			public void onResponse(Response<StartUser> response, Retrofit retrofit) {
+			public void onResponse(Call<StartUser> call, Response<StartUser> response) {
 				if(response.body() != null) {
 					Glide.with(Main.this)
 							.load(response.body().getImg())
@@ -133,7 +134,7 @@ public class Main extends AppCompatActivity
 			}
 
 			@Override
-			public void onFailure(Throwable t) {
+			public void onFailure(Call<StartUser> call, Throwable t) {
 
 			}
 		});

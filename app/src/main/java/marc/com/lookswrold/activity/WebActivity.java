@@ -26,11 +26,12 @@ import marc.com.lookswrold.bean.ZhihuDescBean;
 import marc.com.lookswrold.face.GetZhihuService;
 import marc.com.lookswrold.fragement.ZhihuFragement;
 import marc.com.lookswrold.util.WebUtil;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+//import retrofit.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WebActivity extends AppCompatActivity {
 
@@ -111,12 +112,11 @@ public class WebActivity extends AppCompatActivity {
 				.baseUrl(ZhihuFragement.BASE_URL)
 				.addConverterFactory(GsonConverterFactory.create())
 				.build();
-
 		GetZhihuService github = retrofit.create(GetZhihuService.class);
 		Call<ZhihuDescBean> call = github.getZhihuDescData(id);
 		call.enqueue(new Callback<ZhihuDescBean>() {
 			@Override
-			public void onResponse(Response<ZhihuDescBean> response, Retrofit retrofit) {
+			public void onResponse(Call<ZhihuDescBean> call, Response<ZhihuDescBean> response) {
 				ZhihuDescBean b_d = response.body();
 				//设置移动端css样式
 				mBody = b_d.getBody();
@@ -138,7 +138,7 @@ public class WebActivity extends AppCompatActivity {
 			}
 
 			@Override
-			public void onFailure(Throwable t) {
+			public void onFailure(Call<ZhihuDescBean> call, Throwable t) {
 
 			}
 		});

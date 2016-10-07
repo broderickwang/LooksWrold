@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.squareup.okhttp.ResponseBody;
+//import com.squareup.okhttp.ResponseBody;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,11 +28,13 @@ import marc.com.lookswrold.activity.WebActivity;
 import marc.com.lookswrold.adapter.ZhihuAdaptor;
 import marc.com.lookswrold.bean.ZhihuBean;
 import marc.com.lookswrold.face.GetZhihuService;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+//import retrofit2.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Broderick on 16/9/13.
@@ -117,7 +119,7 @@ public class ZhihuFragement extends Fragment {
 
 		call.enqueue(new Callback<ResponseBody>() {
 			@Override
-			public void onResponse(Response<ResponseBody> response, Retrofit retrofit) {
+			public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 				try {
 					String a = response.body().string();
 					JSONObject object = new JSONObject(a);
@@ -151,7 +153,7 @@ public class ZhihuFragement extends Fragment {
 			}
 
 			@Override
-			public void onFailure(Throwable t) {
+			public void onFailure(Call<ResponseBody> call, Throwable t) {
 
 			}
 		});

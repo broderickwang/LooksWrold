@@ -22,11 +22,12 @@ import marc.com.lookswrold.activity.WebActivity;
 import marc.com.lookswrold.adapter.GitHubAdaptor;
 import marc.com.lookswrold.bean.Contributor;
 import marc.com.lookswrold.face.GitHubClient;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+//import retrofit.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Broderick on 16/9/12.
@@ -99,7 +100,7 @@ public class GithubFragement extends Fragment {
 
 		call.enqueue(new Callback<List<Contributor>>() {
 			@Override
-			public void onResponse(Response<List<Contributor>> response, Retrofit retrofit) {
+			public void onResponse(Call<List<Contributor>> call, Response<List<Contributor>> response) {
 				adpt.setContributors(response.body());
 				adpt.notifyDataSetChanged();
 				dlg.dismiss();
@@ -108,7 +109,7 @@ public class GithubFragement extends Fragment {
 			}
 
 			@Override
-			public void onFailure(Throwable t) {
+			public void onFailure(Call<List<Contributor>> call, Throwable t) {
 
 			}
 		});

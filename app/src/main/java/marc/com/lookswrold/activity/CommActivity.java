@@ -19,11 +19,11 @@ import marc.com.lookswrold.bean.CommBean;
 import marc.com.lookswrold.bean.CommShortBean;
 import marc.com.lookswrold.face.GetZhihuService;
 import marc.com.lookswrold.fragement.ZhihuFragement;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CommActivity extends AppCompatActivity {
 
@@ -56,6 +56,7 @@ public class CommActivity extends AppCompatActivity {
 		getData();
 	}
 	private void getData(){
+
 		Retrofit retrofit = new Retrofit.Builder()
 				.baseUrl(ZhihuFragement.BASE_URL)
 				.addConverterFactory(GsonConverterFactory.create())
@@ -65,7 +66,7 @@ public class CommActivity extends AppCompatActivity {
 		Call<CommBean> call = getZhihuService.getLongComment(id);
 		call.enqueue(new Callback<CommBean>() {
 			@Override
-			public void onResponse(Response<CommBean> response, Retrofit retrofit) {
+			public void onResponse(Call<CommBean> call, Response<CommBean> response) {
 				CommBean bean = response.body();
 				if(bean.getComments().size() == 0) {
 					Toast.makeText(CommActivity.this, "暂无评论", Toast.LENGTH_SHORT).show();
@@ -78,7 +79,7 @@ public class CommActivity extends AppCompatActivity {
 			}
 
 			@Override
-			public void onFailure(Throwable t) {
+			public void onFailure(Call<CommBean> call, Throwable t) {
 				Log.e("TAG", "onFailure: ", t);
 			}
 		});

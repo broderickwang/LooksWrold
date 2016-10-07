@@ -21,11 +21,12 @@ import marc.com.lookswrold.Main;
 import marc.com.lookswrold.R;
 import marc.com.lookswrold.bean.StartUser;
 import marc.com.lookswrold.face.GetZhihuService;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
+import retrofit2.Call;
+import retrofit2.Callback;
+//import retrofit.GsonConverterFactory;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SplashActivity extends AppCompatActivity {
 	static String BASE_URL = "http://news-at.zhihu.com";
@@ -101,7 +102,7 @@ public class SplashActivity extends AppCompatActivity {
 
 		call.enqueue(new Callback<StartUser>() {
 			@Override
-			public void onResponse(Response<StartUser> response, Retrofit retrofit) {
+			public void onResponse(Call<StartUser> call, Response<StartUser> response) {
 				if (response.body() != null) {
 					Glide.with(SplashActivity.this)
 							.load(response.body().getImg())
@@ -111,7 +112,7 @@ public class SplashActivity extends AppCompatActivity {
 			}
 
 			@Override
-			public void onFailure(Throwable t) {
+			public void onFailure(Call<StartUser> call, Throwable t) {
 
 			}
 		});

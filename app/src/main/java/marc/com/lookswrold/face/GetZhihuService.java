@@ -1,17 +1,15 @@
 package marc.com.lookswrold.face;
 
-import com.squareup.okhttp.ResponseBody;
-
 import java.util.List;
-
 import marc.com.lookswrold.bean.CommBean;
 import marc.com.lookswrold.bean.CommShortBean;
 import marc.com.lookswrold.bean.Contributor;
 import marc.com.lookswrold.bean.StartUser;
 import marc.com.lookswrold.bean.ZhihuDescBean;
-import retrofit.Call;
-import retrofit.http.GET;
-import retrofit.http.Path;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 /**
  * Created by Broderick on 16/9/12.
