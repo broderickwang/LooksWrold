@@ -38,6 +38,13 @@ public class SplashActivity extends AppCompatActivity {
 	@Bind(R.id.jump)
 	Button jump;
 
+	static {
+		System.loadLibrary("native-lib");
+	}
+
+	public native String getStringJNI();
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,6 +54,7 @@ public class SplashActivity extends AppCompatActivity {
 			// 设置状态栏透明
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 		}
+		jump.setText(getStringJNI());
 		jump.getBackground().setAlpha(100);
 		getData();
 
