@@ -66,4 +66,6 @@ dependencies {
     compile 'com.squareup.okio:okio:1.7.0'
 
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.3'
+
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
 }
