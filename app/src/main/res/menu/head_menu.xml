@@ -18,6 +18,10 @@
             android:id="@+id/news"
             android:icon="@drawable/rss"
             android:title="新闻在线"/>
+        <item
+            android:id="@+id/gis"
+            android:icon="@drawable/gis"
+            android:title="GIS在线"/>
 
     </group>
 </menu>

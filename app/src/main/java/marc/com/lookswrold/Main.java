@@ -23,6 +23,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import marc.com.lookswrold.bean.StartUser;
 import marc.com.lookswrold.face.GetZhihuService;
+import marc.com.lookswrold.fragement.GISFragement;
 import marc.com.lookswrold.fragement.GithubFragement;
 import marc.com.lookswrold.fragement.Main2Fragement;
 import marc.com.lookswrold.fragement.NewsFragement;
@@ -53,6 +54,8 @@ public class Main extends AppCompatActivity
 	GithubFragement githubFragement;
 	ZhihuFragement zhihuFragement;
 	NewsFragement newsFragement;
+	GISFragement gisFragement;
+
 	ActionBarDrawerToggle mDrawerToggle;
 	ImageView head_tx;
 	TextView head_name;
@@ -97,6 +100,7 @@ public class Main extends AppCompatActivity
 		githubFragement = new GithubFragement();
 		zhihuFragement = new ZhihuFragement();
 		newsFragement = new NewsFragement();
+		gisFragement = new GISFragement();
 		getPhoto();
 	}
 	public void getPhoto() {
@@ -161,6 +165,10 @@ public class Main extends AppCompatActivity
 			case R.id.news:
 				trance.replace(R.id.frame,newsFragement);
 				toolbar.setTitle("今日头条");
+				break;
+			case R.id.gis:
+				trance.replace(R.id.frame,gisFragement);
+				toolbar.setTitle("GIS在线");
 				break;
 		}
 		trance.addToBackStack(null);

@@ -21,6 +21,7 @@ import marc.com.lookswrold.Main;
 import marc.com.lookswrold.R;
 import marc.com.lookswrold.bean.StartUser;
 import marc.com.lookswrold.face.GetZhihuService;
+import marc.com.lookswrold.util.APPUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 //import retrofit.GsonConverterFactory;
@@ -54,7 +55,7 @@ public class SplashActivity extends AppCompatActivity {
 			// 设置状态栏透明
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 		}
-		jump.setText(getStringJNI());
+//		jump.setText(getStringJNI());
 		jump.getBackground().setAlpha(100);
 		getData();
 
@@ -90,9 +91,11 @@ public class SplashActivity extends AppCompatActivity {
 					public void run() {
 						// This method will be executed once the timer is over
 						// Start your app main activity
-						Intent i = new Intent(SplashActivity.this, Main.class);
-						startActivity(i);
-						finish();
+						if(0 == APPUtils.isInto) {
+							Intent i = new Intent(SplashActivity.this, Main.class);
+							startActivity(i);
+							finish();
+						}
 					}
 				}, 7000);
 			}
@@ -128,6 +131,7 @@ public class SplashActivity extends AppCompatActivity {
 
 	@OnClick(R.id.jump)
 	public void onClick() {
+		APPUtils.isInto = 1;
 		Intent i = new Intent(SplashActivity.this, Main.class);
 		startActivity(i);
 		finish();

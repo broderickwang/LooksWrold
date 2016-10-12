@@ -84,4 +84,5 @@ dependencies {
     compile 'com.esri.arcgis.android:arcgis-android:10.2.8-1'
 
     compile 'com.android.support:multidex:1.0.0'
+    compile 'com.google.android.gms:play-services-maps:9.6.1'
 }

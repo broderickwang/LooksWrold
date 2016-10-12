@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.esri.android.map.MapView
+        android:id="@+id/gis_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        mapoptions.center="34.056215, -117.195668"
+        mapoptions.ZoomLevel="16"></com.esri.android.map.MapView>
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/fbmenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        fab:fab_labelStyle="@style/Theme.menu">
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/MainColor"
+            fab:theme="@android:style/Theme.Material.Settings"
+            fab:fab_title="add point"
+            fab:fab_icon="@drawable/point"/>
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_polyline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/MainColor"
+            fab:theme="@android:style/Theme.Material.Settings"
+            fab:fab_title="add polyline"
+            fab:fab_icon="@drawable/polyline"/>
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_polygon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/MainColor"
+            fab:theme="@android:style/Theme.Material.Settings"
+            fab:fab_title="add polygon"
+            fab:fab_icon="@drawable/polygon"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/upload_newdata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/MainColor"
+            fab:theme="@android:style/Theme.Material.Settings"
+            fab:fab_title="upload"
+            fab:fab_icon="@drawable/uploaddata"/>
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+    <com.getbase.floatingactionbutton.FloatingActionButton
+        android:id="@+id/zoomin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        fab:fab_colorNormal="@color/MainColor"
+        fab:theme="@android:style/Theme.Material.Settings"
+        fab:fab_title="zoomin"
+        fab:fab_icon="@drawable/zoomin"
+        android:layout_above="@+id/zoomout"/>
+    <com.getbase.floatingactionbutton.FloatingActionButton
+        android:id="@+id/zoomout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        fab:fab_colorNormal="@color/MainColor"
+        fab:theme="@android:style/Theme.Material.Settings"
+        fab:fab_title="zoomout"
+        fab:fab_icon="@drawable/zoomout"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>
