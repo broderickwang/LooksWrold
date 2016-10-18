@@ -26,6 +26,7 @@
         </activity>
         <activity android:name=".activity.NewsImgActivity">
         </activity>
+        <activity android:name=".activity.ThreeDActivity"></activity>
     </application>
 
 </manifest>

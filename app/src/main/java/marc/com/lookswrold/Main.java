@@ -1,5 +1,6 @@
 package marc.com.lookswrold;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -21,6 +22,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import marc.com.lookswrold.activity.ThreeDActivity;
 import marc.com.lookswrold.bean.StartUser;
 import marc.com.lookswrold.face.GetZhihuService;
 import marc.com.lookswrold.fragement.GISFragement;
@@ -28,6 +30,7 @@ import marc.com.lookswrold.fragement.GithubFragement;
 import marc.com.lookswrold.fragement.Main2Fragement;
 import marc.com.lookswrold.fragement.NewsFragement;
 import marc.com.lookswrold.fragement.MainFragement;
+import marc.com.lookswrold.fragement.ThreeDFragement;
 import marc.com.lookswrold.fragement.ZhihuFragement;
 import marc.com.lookswrold.util.GlideCircleTransform;
 import retrofit2.Call;
@@ -55,6 +58,7 @@ public class Main extends AppCompatActivity
 	ZhihuFragement zhihuFragement;
 	NewsFragement newsFragement;
 	GISFragement gisFragement;
+	ThreeDFragement threeDFragement;
 
 	ActionBarDrawerToggle mDrawerToggle;
 	ImageView head_tx;
@@ -101,6 +105,7 @@ public class Main extends AppCompatActivity
 		zhihuFragement = new ZhihuFragement();
 		newsFragement = new NewsFragement();
 		gisFragement = new GISFragement();
+		threeDFragement = new ThreeDFragement();
 		getPhoto();
 	}
 	public void getPhoto() {
@@ -169,6 +174,10 @@ public class Main extends AppCompatActivity
 			case R.id.gis:
 				trance.replace(R.id.frame,gisFragement);
 				toolbar.setTitle("GIS在线");
+				break;
+			case R.id.ddd:
+				Intent i = new Intent(Main.this, ThreeDActivity.class);
+				startActivity(i);
 				break;
 		}
 		trance.addToBackStack(null);

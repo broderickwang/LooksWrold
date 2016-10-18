@@ -13,9 +13,11 @@ import com.esri.android.map.MapOptions;
 import com.esri.android.map.MapView;
 import com.esri.android.map.ags.ArcGISDynamicMapServiceLayer;
 import com.esri.android.map.ags.ArcGISFeatureLayer;
+import com.esri.android.map.event.OnStatusChangedListener;
 import com.esri.android.runtime.ArcGISRuntime;
 import com.esri.core.geodatabase.GeodatabaseEditError;
 import com.esri.core.geodatabase.GeodatabaseFeatureServiceTable;
+import com.esri.core.geometry.Envelope;
 import com.esri.core.geometry.Geometry;
 import com.esri.core.geometry.Point;
 import com.esri.core.geometry.SpatialReference;
@@ -95,7 +97,17 @@ public class GISFragement extends Fragment {
 	}
 
 	private void init() {
+
 		mapView.setMapBackground(0xffffff, 0xffffff, 0, 0);
+
+		mapView.setOnStatusChangedListener(new OnStatusChangedListener() {
+			@Override
+			public void onStatusChanged(Object o, STATUS status) {
+				if (STATUS.LAYER_LOADED == status) {
+				}
+			}
+		});
+
 		mapTouchListner = new MapTouchListner(getContext(),mapView);
 
 		mapView.setOnTouchListener(mapTouchListner);
@@ -116,6 +128,7 @@ public class GISFragement extends Fragment {
 				if (status == GeodatabaseFeatureServiceTable.Status.INITIALIZED) {
 					pointlayer = new FeatureLayer(pointTable);
 					mapView.addLayer(pointlayer);
+					mapTouchListner.setPointlayer(pointlayer);
 
 				}
 			}

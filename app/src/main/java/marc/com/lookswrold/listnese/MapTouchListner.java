@@ -14,6 +14,8 @@ import com.esri.core.geometry.Point;
 import com.esri.core.geometry.Polyline;
 import com.esri.core.table.TableException;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,6 +51,8 @@ public class MapTouchListner extends MapOnTouchListener  implements OnZoomListen
 
 	private GeodatabaseFeatureServiceTable gonTable;
 
+	private FeatureLayer pointlayer;
+
 	private long fid = 0;
 
 	private Point startPoint = null,endPoint = null;
@@ -80,11 +84,15 @@ public class MapTouchListner extends MapOnTouchListener  implements OnZoomListen
 			case MPOLYGON:
 				break;
 			case MNULL:
+				long[] selectedFeatures = pointlayer.getFeatureIDs(point.getX(), point.getY(), 5, 1000);
+				// select the features
+				pointlayer.selectFeatures(selectedFeatures, false);
 				break;
 		}
 
 		return super.onSingleTap(point);
 	}
+
 
 	private void addPolyline(){
 
@@ -92,8 +100,11 @@ public class MapTouchListner extends MapOnTouchListener  implements OnZoomListen
 
 	private void addPoint(Point p) {
 		Map<String, Object> attributes = new HashMap<>();
-		attributes.put("name", "a");
-		attributes.put("time", "b");
+		attributes.put("name", p.toString());
+		Date d = new Date(System.currentTimeMillis());
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String time = simpleDateFormat.format(d);
+		attributes.put("time", time);
 
 
 		try {
@@ -133,5 +144,9 @@ public class MapTouchListner extends MapOnTouchListener  implements OnZoomListen
 
 	public void setType(EDIT_GEO_TYPE type) {
 		this.type = type;
+	}
+
+	public void setPointlayer(FeatureLayer pointlayer) {
+		this.pointlayer = pointlayer;
 	}
 }
