@@ -8,16 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import marc.com.lookswrold.R;
 import marc.com.lookswrold.adapter.ZHCommAdaptor;
 import marc.com.lookswrold.bean.CommBean;
 import marc.com.lookswrold.bean.CommShortBean;
-import marc.com.lookswrold.face.GetZhihuService;
+import marc.com.lookswrold.services.GetZhihuService;
 import marc.com.lookswrold.fragement.ZhihuFragement;
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -1,4 +1,4 @@
-package marc.com.lookswrold.face;
+package marc.com.lookswrold.services;
 
 import marc.com.lookswrold.bean.DateBean;
 import marc.com.lookswrold.bean.NewsBean;

@@ -24,12 +24,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import marc.com.lookswrold.activity.ThreeDActivity;
 import marc.com.lookswrold.bean.StartUser;
-import marc.com.lookswrold.face.GetZhihuService;
+import marc.com.lookswrold.services.GetZhihuService;
 import marc.com.lookswrold.fragement.GISFragement;
 import marc.com.lookswrold.fragement.GithubFragement;
 import marc.com.lookswrold.fragement.Main2Fragement;
 import marc.com.lookswrold.fragement.NewsFragement;
-import marc.com.lookswrold.fragement.MainFragement;
 import marc.com.lookswrold.fragement.ThreeDFragement;
 import marc.com.lookswrold.fragement.ZhihuFragement;
 import marc.com.lookswrold.util.GlideCircleTransform;
@@ -178,6 +177,11 @@ public class Main extends AppCompatActivity
 			case R.id.ddd:
 				Intent i = new Intent(Main.this, ThreeDActivity.class);
 				startActivity(i);
+				break;
+			case R.id.baidu_map:
+				/*Intent i1 = new Intent(Main.this, GaodeAcitivity.class);
+				startActivity(i1);*/
+				Toast.makeText(this, "nothing to show", Toast.LENGTH_SHORT).show();
 				break;
 		}
 		trance.addToBackStack(null);

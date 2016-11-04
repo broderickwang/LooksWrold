@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 import marc.com.lookswrold.R;
 import marc.com.lookswrold.adapter.ZHWebAdaptor;
 import marc.com.lookswrold.bean.ZhihuDescBean;
-import marc.com.lookswrold.face.GetZhihuService;
+import marc.com.lookswrold.services.GetZhihuService;
 import marc.com.lookswrold.fragement.ZhihuFragement;
 import marc.com.lookswrold.util.WebUtil;
 import retrofit2.Call;
@@ -32,6 +32,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 public class WebActivity extends AppCompatActivity {
 
@@ -117,6 +121,21 @@ public class WebActivity extends AppCompatActivity {
 		call.enqueue(new Callback<ZhihuDescBean>() {
 			@Override
 			public void onResponse(Call<ZhihuDescBean> call, Response<ZhihuDescBean> response) {
+				//rxjava demo -added by marc
+				rx.Observable.create(new rx.Observable.OnSubscribe<Object>() {
+					@Override
+					public void call(Subscriber<? super Object> subscriber) {
+
+					}
+				})
+						.subscribeOn(Schedulers.io())
+						.observeOn(AndroidSchedulers.mainThread())
+						.subscribe(new Action1<Object>() {
+							@Override
+							public void call(Object o) {
+
+							}
+						});
 				ZhihuDescBean b_d = response.body();
 				//设置移动端css样式
 				mBody = b_d.getBody();

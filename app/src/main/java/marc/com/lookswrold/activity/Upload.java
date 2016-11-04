@@ -4,16 +4,14 @@ import android.net.Uri;
 
 import java.io.File;
 
-import marc.com.lookswrold.face.FileUploadService;
+import marc.com.lookswrold.services.FileUploadService;
 import marc.com.lookswrold.util.ServiceGenerator;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
-import android.os.*;
 
 /**
  * Created by Broderick on 16/9/22.

@@ -1,10 +1,8 @@
-package marc.com.lookswrold.face;
+package marc.com.lookswrold.services;
 
 import marc.com.lookswrold.bean.NewsBean;
-import marc.com.lookswrold.bean.StartUser;
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**

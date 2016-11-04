@@ -23,7 +23,7 @@ import marc.com.lookswrold.activity.NewsImgActivity;
 import marc.com.lookswrold.activity.WebActivity;
 import marc.com.lookswrold.adapter.NewsAdaptor;
 import marc.com.lookswrold.bean.NewsBean;
-import marc.com.lookswrold.face.GetNewsService;
+import marc.com.lookswrold.services.GetNewsService;
 import retrofit2.Call;
 import retrofit2.Callback;
 //import retrofit.GsonConverterFactory;
@@ -119,6 +119,7 @@ public class NewsFragement extends Fragment {
 		call.enqueue(new Callback<NewsBean>() {
 			@Override
 			public void onResponse(Call<NewsBean> call, Response<NewsBean> response) {
+				response.raw().request().url();//获取请求的url
 
 				NewsBean body = response.body();
 				NewsBean.ResultBean resultBean = body.getResult();

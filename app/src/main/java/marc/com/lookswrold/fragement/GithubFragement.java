@@ -21,7 +21,7 @@ import marc.com.lookswrold.R;
 import marc.com.lookswrold.activity.WebActivity;
 import marc.com.lookswrold.adapter.GitHubAdaptor;
 import marc.com.lookswrold.bean.Contributor;
-import marc.com.lookswrold.face.GitHubClient;
+import marc.com.lookswrold.services.GitHubClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 //import retrofit.GsonConverterFactory;

@@ -15,7 +15,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import marc.com.lookswrold.R;
 import marc.com.lookswrold.bean.DateBean;
-import marc.com.lookswrold.face.GetDateService;
+import marc.com.lookswrold.services.GetDateService;
 import retrofit2.Call;
 import retrofit2.Callback;
 //import retrofit.GsonConverterFactory;

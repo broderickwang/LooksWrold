@@ -1,0 +1,18 @@
+package marc.com.lookswrold;
+
+
+import android.support.multidex.MultiDexApplication;
+
+/**
+ * Created by Broderick on 2016/10/21.
+ */
+
+public class MyApplication extends MultiDexApplication {
+
+
+	@Override
+	public void onCreate() {
+		super.onCreate();
+
+	}
+}

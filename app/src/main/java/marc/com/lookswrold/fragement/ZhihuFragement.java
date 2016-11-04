@@ -27,7 +27,7 @@ import marc.com.lookswrold.activity.CommActivity;
 import marc.com.lookswrold.activity.WebActivity;
 import marc.com.lookswrold.adapter.ZhihuAdaptor;
 import marc.com.lookswrold.bean.ZhihuBean;
-import marc.com.lookswrold.face.GetZhihuService;
+import marc.com.lookswrold.services.GetZhihuService;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;

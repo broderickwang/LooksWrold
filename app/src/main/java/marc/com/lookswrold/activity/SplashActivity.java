@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -20,8 +21,11 @@ import butterknife.OnClick;
 import marc.com.lookswrold.Main;
 import marc.com.lookswrold.R;
 import marc.com.lookswrold.bean.StartUser;
-import marc.com.lookswrold.face.GetZhihuService;
+import marc.com.lookswrold.services.FileDownloadService;
+import marc.com.lookswrold.services.GetZhihuService;
 import marc.com.lookswrold.util.APPUtils;
+import marc.com.lookswrold.util.ServiceGenerator;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 //import retrofit.GsonConverterFactory;
@@ -31,6 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SplashActivity extends AppCompatActivity {
 	static String BASE_URL = "http://news-at.zhihu.com";
+	static String TEST_URL = "download/test.jpg";
 
 	@Bind(R.id.spalsh)
 	ImageView spalsh;
@@ -134,6 +139,25 @@ public class SplashActivity extends AppCompatActivity {
 		APPUtils.isInto = 1;
 		Intent i = new Intent(SplashActivity.this, Main.class);
 		startActivity(i);
+//		downLoad();
 		finish();
+	}
+
+	private void downLoad(){
+		FileDownloadService service = ServiceGenerator.createService(FileDownloadService.class);
+		Call<ResponseBody> call = service.downloadFileWithDynamicUrlSync(TEST_URL);
+		call.enqueue(new Callback<ResponseBody>() {
+			@Override
+			public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+				if(response.isSuccessful()){
+					boolean is = APPUtils.writeResponseBodyToDisk(response.body());
+				}
+			}
+
+			@Override
+			public void onFailure(Call<ResponseBody> call, Throwable t) {
+				Log.e("TAG", "onFailure: ",t );
+			}
+		});
 	}
 }
