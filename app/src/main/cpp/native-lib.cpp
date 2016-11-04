@@ -1,6 +1,7 @@
 //
 //NDK下的C/C++函数和Java桥接的函数命名是有约束的，规则如下：
 //                      Java_PackageName_ClassName_MethodName
+//added in my home
 // Created by Broderick on 2016/10/10.
 //
 #include <jni.h>
