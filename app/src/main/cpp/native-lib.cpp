@@ -13,6 +13,7 @@ Java_marc_com_lookswrold_activity_SplashActivity_getStringJNI(
         JNIEnv* env,
         jobject /* this */) {
     std::string hello = "Hello from C++";
+    std::string a = "test";
     return env->NewStringUTF(hello.c_str());
 }
 
