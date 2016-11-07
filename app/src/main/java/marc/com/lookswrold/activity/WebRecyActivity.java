@@ -1,5 +1,6 @@
 package marc.com.lookswrold.activity;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -67,11 +68,16 @@ public class WebRecyActivity extends AppCompatActivity {
 	@Bind(R.id.appbar)
 	AppBarLayout appbar;
 
+	ProgressDialog dlg;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_web_recy);
 		ButterKnife.bind(this);
+
+		dlg = ProgressDialog.show(this, null, "Loading...");
+		dlg.show();
 
 		initToolbar();
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -135,7 +141,7 @@ public class WebRecyActivity extends AppCompatActivity {
 				}
 				String data = WebUtil.buildHtmlWithCss(mBody, scc, false);
 				web.loadDataWithBaseURL(WebUtil.BASE_URL, data, WebUtil.MIME_TYPE, WebUtil.ENCODING, WebUtil.FAIL_URL);
-
+				dlg.dismiss();
 			}
 
 			@Override
