@@ -25,6 +25,7 @@ import butterknife.ButterKnife;
 import marc.com.lookswrold.R;
 import marc.com.lookswrold.activity.CommActivity;
 import marc.com.lookswrold.activity.WebActivity;
+import marc.com.lookswrold.activity.WebRecyActivity;
 import marc.com.lookswrold.adapter.ZhihuAdaptor;
 import marc.com.lookswrold.bean.ZhihuBean;
 import marc.com.lookswrold.services.GetZhihuService;
@@ -66,7 +67,7 @@ public class ZhihuFragement extends Fragment {
 		adaptor.setClick(new ZhihuAdaptor.OnRecycleViewItemClick() {
 			@Override
 			public void onItemClick(View v, String data) {
-				Intent i = new Intent(getContext(), WebActivity.class);
+				Intent i = new Intent(getContext(), WebRecyActivity.class /*WebActivity.class*/);
 				i.putExtra("id", data);
 				i.putExtra("type", "zhihu");
 				startActivity(i);

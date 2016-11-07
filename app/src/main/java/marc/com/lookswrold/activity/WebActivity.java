@@ -1,10 +1,13 @@
 package marc.com.lookswrold.activity;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.DragEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -23,19 +26,21 @@ import butterknife.ButterKnife;
 import marc.com.lookswrold.R;
 import marc.com.lookswrold.adapter.ZHWebAdaptor;
 import marc.com.lookswrold.bean.ZhihuDescBean;
-import marc.com.lookswrold.services.GetZhihuService;
 import marc.com.lookswrold.fragement.ZhihuFragement;
+import marc.com.lookswrold.services.GetZhihuService;
 import marc.com.lookswrold.util.WebUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
-//import retrofit.GsonConverterFactory;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
+
+//import retrofit.GsonConverterFactory;
 
 public class WebActivity extends AppCompatActivity {
 
@@ -58,6 +63,12 @@ public class WebActivity extends AppCompatActivity {
 	@Bind(R.id.zh_web_recycle)
 	RecyclerView zhWebRecycle;
 	ZHWebAdaptor adaptor;
+	@Bind(R.id.toolbarimg)
+	ImageView toolbarimg;
+	@Bind(R.id.toolbar)
+	Toolbar toolbar;
+	@Bind(R.id.collapsing_toolbar_layout)
+	CollapsingToolbarLayout collapsingToolbarLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +77,23 @@ public class WebActivity extends AppCompatActivity {
 		ButterKnife.bind(this);
 		dlg = ProgressDialog.show(this, null, "Loading...");
 		dlg.show();
+
+		///init toolbar
+		setSupportActionBar(toolbar);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				onBackPressed();
+			}
+		});
+
+		//使用CollapsingToolbarLayout必须把title设置到CollapsingToolbarLayout上，设置到Toolbar上则不会显示
+		collapsingToolbarLayout.setTitle("CollapsingToolbarLayout");
+		//通过CollapsingToolbarLayout修改字体颜色
+		collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);//设置还没收缩时状态下字体颜色
+		collapsingToolbarLayout.setCollapsedTitleTextColor(Color.GREEN);//设置收缩后Toolbar上字体的颜色
+
 		/////////////////////////////////////////////////////////////////////
 		web.getSettings().setDefaultTextEncodingName("UTF-8");
 		WebSettings settings = web.getSettings();
@@ -122,7 +150,7 @@ public class WebActivity extends AppCompatActivity {
 			@Override
 			public void onResponse(Call<ZhihuDescBean> call, Response<ZhihuDescBean> response) {
 				//rxjava demo -added by marc
-				rx.Observable.create(new rx.Observable.OnSubscribe<Object>() {
+				Observable.create(new Observable.OnSubscribe<Object>() {
 					@Override
 					public void call(Subscriber<? super Object> subscriber) {
 
@@ -148,7 +176,7 @@ public class WebActivity extends AppCompatActivity {
 				web.loadDataWithBaseURL(WebUtil.BASE_URL, data, WebUtil.MIME_TYPE, WebUtil.ENCODING, WebUtil.FAIL_URL);
 				Glide.with(WebActivity.this)
 						.load(response.body().getImage())
-						.into(ttPic);
+						.into(toolbarimg);
 				ttTitle.setText(response.body().getTitle());
 				/*String[] ss = {data,response.body().getImage(),response.body().getTitle()};
 				adaptor.setObjs(ss);

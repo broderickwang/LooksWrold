@@ -50,6 +50,8 @@
         <activity android:name=".activity.ThreeDActivity"/>
         <activity android:name=".GaodeAcitivity">
         </activity>
+        <activity android:name=".activity.WebRecyActivity">
+        </activity>
     </application>
 
 </manifest>
