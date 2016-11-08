@@ -23,7 +23,7 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ktx2"
+        android:icon="@drawable/lk2"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -51,6 +51,8 @@
         <activity android:name=".GaodeAcitivity">
         </activity>
         <activity android:name=".activity.WebRecyActivity">
+        </activity>
+        <activity android:name=".activity.NewsActivity">
         </activity>
     </application>
 

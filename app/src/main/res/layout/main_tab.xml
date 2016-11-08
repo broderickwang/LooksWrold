@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="44dp"
+              android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/main_tab_img"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:src="@drawable/bottombar_01" />
+
+    <TextView
+        android:id="@+id/main_tab_tv"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:gravity="center"
+        android:text="首页"
+        android:textColor="@drawable/tab_text_color" />
+</LinearLayout>

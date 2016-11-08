@@ -14,4 +14,7 @@
 
     <color name="red">#FF4640</color>
     <color name="green">#40FF70</color>
+
+    <color name="main_tab_text_selected">#845c5c</color>
+    <color name="main_tab_text">#181717</color>
 </resources>

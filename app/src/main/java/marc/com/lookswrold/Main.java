@@ -22,6 +22,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import marc.com.lookswrold.activity.NewsActivity;
 import marc.com.lookswrold.activity.ThreeDActivity;
 import marc.com.lookswrold.bean.StartUser;
 import marc.com.lookswrold.services.GetZhihuService;
@@ -181,7 +182,9 @@ public class Main extends AppCompatActivity
 			case R.id.baidu_map:
 				/*Intent i1 = new Intent(Main.this, GaodeAcitivity.class);
 				startActivity(i1);*/
-				Toast.makeText(this, "nothing to show", Toast.LENGTH_SHORT).show();
+//				Toast.makeText(this, "nothing to show", Toast.LENGTH_SHORT).show();
+				Intent it = new Intent(Main.this, NewsActivity.class);
+				startActivity(it);
 				break;
 		}
 		trance.addToBackStack(null);
