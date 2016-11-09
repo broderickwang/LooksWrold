@@ -45,4 +45,6 @@ public class MainPageAdapter extends FragmentPagerAdapter{
 		super.destroyItem(container,position,object);
 	}
 
+
+
 }

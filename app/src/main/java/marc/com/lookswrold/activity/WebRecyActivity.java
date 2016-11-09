@@ -2,6 +2,7 @@ package marc.com.lookswrold.activity;
 
 import android.app.ProgressDialog;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -20,6 +21,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
 import java.util.List;
 
@@ -31,6 +37,7 @@ import marc.com.lookswrold.fragement.ZhihuFragement;
 import marc.com.lookswrold.interfaces.ScrollInterface;
 import marc.com.lookswrold.myclass.MarcWebView;
 import marc.com.lookswrold.services.GetZhihuService;
+import marc.com.lookswrold.util.FrescoUtils;
 import marc.com.lookswrold.util.WebUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,6 +52,8 @@ import rx.schedulers.Schedulers;
 
 public class WebRecyActivity extends AppCompatActivity {
 
+	@Bind(R.id.my_image_draweeview)
+	SimpleDraweeView myImageDraweeview;
 	private CollapsingToolbarLayoutState state;
 
 	private enum CollapsingToolbarLayoutState {
@@ -109,14 +118,15 @@ public class WebRecyActivity extends AppCompatActivity {
 		call.enqueue(new Callback<ZhihuDescBean>() {
 			@Override
 			public void onResponse(Call<ZhihuDescBean> call, Response<ZhihuDescBean> response) {
-				//rxjava demo -added by marc
 
 				collapsingToolbarLayout.setTitle(response.body().getTitle());
 
 				Glide.with(WebRecyActivity.this)
 						.load(response.body().getImage())
 						.into(recywebImg);
+				FrescoUtils.loadImageViaDraweeController(myImageDraweeview,response.body().getImage());
 
+				//rxjava demo -added by marc
 				Observable.create(new Observable.OnSubscribe<Object>() {
 					@Override
 					public void call(Subscriber<? super Object> subscriber) {
@@ -184,7 +194,7 @@ public class WebRecyActivity extends AppCompatActivity {
 					}
 				} else {
 					if (state != CollapsingToolbarLayoutState.INTERNEDIATE) {
-						if(state == CollapsingToolbarLayoutState.COLLAPSED){
+						if (state == CollapsingToolbarLayoutState.COLLAPSED) {
 //							playButton.setVisibility(View.GONE);//由折叠变为中间状态时隐藏播放按钮
 						}
 						state = CollapsingToolbarLayoutState.INTERNEDIATE;//修改状态标记为中间
@@ -255,12 +265,12 @@ public class WebRecyActivity extends AppCompatActivity {
 			public void onSChanged(int l, int t, int oldl, int oldt) {
 				// TODO Auto-generated method stub
 				//WebView的总高度
-				float webViewContentHeight=web.getContentHeight() * web.getScale();
+				float webViewContentHeight = web.getContentHeight() * web.getScale();
 				//WebView的现高度
-				float webViewCurrentHeight=(web.getHeight() + web.getScrollY());
-				System.out.println("webViewContentHeight="+webViewContentHeight);
-				System.out.println("webViewCurrentHeight="+webViewCurrentHeight);
-				if ((webViewContentHeight-webViewCurrentHeight) == 0) {
+				float webViewCurrentHeight = (web.getHeight() + web.getScrollY());
+				System.out.println("webViewContentHeight=" + webViewContentHeight);
+				System.out.println("webViewCurrentHeight=" + webViewCurrentHeight);
+				if ((webViewContentHeight - webViewCurrentHeight) == 0) {
 					Toast.makeText(WebRecyActivity.this, "bottom", Toast.LENGTH_SHORT).show();
 				}
 			}

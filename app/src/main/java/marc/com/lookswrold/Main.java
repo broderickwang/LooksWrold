@@ -23,6 +23,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import marc.com.lookswrold.activity.NewsActivity;
+import marc.com.lookswrold.activity.PieChartActivity;
 import marc.com.lookswrold.activity.ThreeDActivity;
 import marc.com.lookswrold.bean.StartUser;
 import marc.com.lookswrold.services.GetZhihuService;
@@ -185,6 +186,9 @@ public class Main extends AppCompatActivity
 //				Toast.makeText(this, "nothing to show", Toast.LENGTH_SHORT).show();
 				Intent it = new Intent(Main.this, NewsActivity.class);
 				startActivity(it);
+				break;
+			case R.id.jump2piechart:
+				startActivity(new Intent(Main.this, PieChartActivity.class));
 				break;
 		}
 		trance.addToBackStack(null);

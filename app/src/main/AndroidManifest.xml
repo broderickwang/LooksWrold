@@ -54,6 +54,8 @@
         </activity>
         <activity android:name=".activity.NewsActivity">
         </activity>
+        <activity android:name=".activity.PieChartActivity">
+        </activity>
     </application>
 
 </manifest>
