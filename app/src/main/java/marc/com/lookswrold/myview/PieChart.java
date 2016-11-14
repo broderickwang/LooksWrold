@@ -6,6 +6,7 @@ import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Picture;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -24,6 +25,7 @@ public class PieChart extends View {
 	private float mTextHeight;
 	private Drawable mDrawable;
 	private int mWidth,mHeight;
+	private Picture mPicture = new Picture();
 
 	Paint mTextPaint,mPiePaint,mShadowPaint, mBlackPaint
 			,mBluePaint,mRedPaint,mWhitePaint,mGrayPaint;
@@ -60,12 +62,13 @@ public class PieChart extends View {
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
 		canvas.translate(mWidth/2,mHeight/2);
-		RectF rectF = new RectF(100,100,600,600);
+		/*RectF rectF = new RectF(-300,-300,300,300);
 		canvas.drawRect(rectF,mGrayPaint);
 		canvas.drawArc(rectF,0,90,true, mBlackPaint);
 		canvas.drawArc(rectF,90,40,true,mBluePaint);
 		canvas.drawArc(rectF,130,100,true,mRedPaint);
-		canvas.drawArc(rectF,230,130,true,mWhitePaint);
+		canvas.drawArc(rectF,230,130,true,mWhitePaint);*/
+		canvas.drawPicture(mPicture);
 	}
 
 	@Override
@@ -115,5 +118,24 @@ public class PieChart extends View {
 		mGrayPaint.setColor(Color.GRAY);
 		mGrayPaint.setStrokeWidth(20);
 		mGrayPaint.setStyle(Paint.Style.FILL);
+
+		recording();
+	}
+
+	private void recording(){
+		Canvas canvas = mPicture.beginRecording(500,500);
+		//create a paint
+		Paint p = new Paint();
+		p.setColor(Color.BLUE);
+		p.setStyle(Paint.Style.FILL);
+
+		//do someting in canvas
+		//translate
+//		canvas.translate(250,250);
+		//draw a circle
+		canvas.drawCircle(0,0,100,p);
+
+		mPicture.endRecording();
+
 	}
 }

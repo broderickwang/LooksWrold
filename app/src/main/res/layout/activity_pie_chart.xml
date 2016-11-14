@@ -6,7 +6,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="marc.com.lookswrold.activity.PieChartActivity">
-    <marc.com.lookswrold.myview.PieChart
+
+    <marc.com.lookswrold.myview.TJView
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <marc.com.lookswrold.myview.RadarView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+    <marc.com.lookswrold.myview.PieChart
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+    <marc.com.lookswrold.myview.CheckView
+        android:id="@+id/cv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+    <marc.com.lookswrold.myview.BezierView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+    <marc.com.lookswrold.myview.Bezier2View
+        android:id="@+id/bv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/check"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="check"/>
+        <Button
+            android:id="@+id/uncheck"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="uncheck"/>
+    </LinearLayout>
 </RelativeLayout>
