@@ -63,6 +63,7 @@ public class NewsFragement extends Fragment {
 		View v = inflater.inflate(R.layout.news_layout, container, false);
 		ButterKnife.bind(this, v);
 
+
 		dlg = ProgressDialog.show(getContext(),null,"Loading...");
 		dlg.show();
 		newsRef.setColorSchemeResources(R.color.color1,R.color.color2,R.color.color3);

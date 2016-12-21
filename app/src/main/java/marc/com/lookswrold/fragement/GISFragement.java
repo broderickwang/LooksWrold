@@ -63,6 +63,8 @@ public class GISFragement extends Fragment {
 
 	final String worldstreetURL = "http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer";
 
+	final String QD_URL = "http://219.146.254.74:6080/arcgis/rest/services/ArcGisOL/qdplane/MapServer";
+
 	final MapOptions mStreetsBasemap = new MapOptions(MapOptions.MapType.STREETS);
 
 	GeodatabaseFeatureServiceTable pointTable , lineTable,gonTable,worldTable;
@@ -119,8 +121,9 @@ public class GISFragement extends Fragment {
 		LicenseInfo info = LicenseInfo.fromJson(loadedString);
 		ArcGISRuntime.License.setLicense(info);*/
 
-		mapView.setMapOptions(mStreetsBasemap);
-		pointTable = new GeodatabaseFeatureServiceTable(servicepointURL, 0);
+//		mapView.setMapOptions(mStreetsBasemap);
+		pointTable = new GeodatabaseFeatureServiceTable(
+				"http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer", 0);
 		pointTable.setSpatialReference(SpatialReference.create(102100));
 		pointTable.initialize(new CallbackListener<GeodatabaseFeatureServiceTable.Status>() {
 			@Override

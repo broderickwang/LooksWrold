@@ -22,6 +22,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import marc.com.lookswrold.activity.FABShow_Hide_Activity;
 import marc.com.lookswrold.activity.NewsActivity;
 import marc.com.lookswrold.activity.PieChartActivity;
 import marc.com.lookswrold.activity.ThreeDActivity;
@@ -188,7 +189,7 @@ public class Main extends AppCompatActivity
 				startActivity(it);
 				break;
 			case R.id.jump2piechart:
-				startActivity(new Intent(Main.this, PieChartActivity.class));
+				startActivity(new Intent(Main.this, FABShow_Hide_Activity.class));
 				break;
 		}
 		trance.addToBackStack(null);

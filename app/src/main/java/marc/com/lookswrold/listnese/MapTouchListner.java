@@ -3,6 +3,7 @@ package marc.com.lookswrold.listnese;
 import android.content.Context;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 import com.esri.android.map.FeatureLayer;
 import com.esri.android.map.MapOnTouchListener;
@@ -24,6 +25,7 @@ import java.util.Map;
  */
 
 public class MapTouchListner extends MapOnTouchListener  implements OnZoomListener{
+	private Context context;
 	@Override
 	public void preAction(float v, float v1, double v2) {
 
@@ -65,6 +67,7 @@ public class MapTouchListner extends MapOnTouchListener  implements OnZoomListen
 	public MapTouchListner(Context context, MapView view) {
 		super(context, view);
 		this.mapView = view;
+		this.context = context;
 	}
 
 	@Override
@@ -84,9 +87,14 @@ public class MapTouchListner extends MapOnTouchListener  implements OnZoomListen
 			case MPOLYGON:
 				break;
 			case MNULL:
-				long[] selectedFeatures = pointlayer.getFeatureIDs(point.getX(), point.getY(), 5, 1000);
+				long[] selectedFeatures = pointlayer.getFeatureIDs(point.getX(), point.getY(), 5000, 1000);
 				// select the features
-				pointlayer.selectFeatures(selectedFeatures, false);
+				if(selectedFeatures.length > 0 && pointlayer!=null) {
+					pointlayer.selectFeatures(selectedFeatures, false);
+					Toast.makeText(context, "selected "+selectedFeatures.length +" features!", Toast.LENGTH_SHORT).show();
+				}else{
+					Toast.makeText(context, "selected nothing!", Toast.LENGTH_SHORT).show();
+				}
 				break;
 		}
 

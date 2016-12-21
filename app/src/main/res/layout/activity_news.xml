@@ -13,6 +13,7 @@
         android:layout_weight="1"
         android:background="@color/bgcolor"
         />
+
     <android.support.design.widget.TabLayout
         android:id="@+id/main_tablayout"
         android:layout_width="match_parent"

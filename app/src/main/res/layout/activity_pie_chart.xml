@@ -6,7 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="marc.com.lookswrold.activity.PieChartActivity">
-    <marc.com.lookswrold.myview.PieChart
+    <!--<marc.com.lookswrold.myview.PieChart
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>-->
+    <marc.com.lookswrold.myview.FlyingView
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </RelativeLayout>
