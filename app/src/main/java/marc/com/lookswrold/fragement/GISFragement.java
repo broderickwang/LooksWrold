@@ -122,8 +122,8 @@ public class GISFragement extends Fragment {
 		ArcGISRuntime.License.setLicense(info);*/
 
 //		mapView.setMapOptions(mStreetsBasemap);
-		pointTable = new GeodatabaseFeatureServiceTable(
-				"http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer", 0);
+		pointTable = new GeodatabaseFeatureServiceTable(QD_URL,
+				/*"http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer",*/ 0);
 		pointTable.setSpatialReference(SpatialReference.create(102100));
 		pointTable.initialize(new CallbackListener<GeodatabaseFeatureServiceTable.Status>() {
 			@Override

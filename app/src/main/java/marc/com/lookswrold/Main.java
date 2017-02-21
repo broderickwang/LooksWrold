@@ -27,6 +27,7 @@ import marc.com.lookswrold.activity.NewsActivity;
 import marc.com.lookswrold.activity.PieChartActivity;
 import marc.com.lookswrold.activity.ThreeDActivity;
 import marc.com.lookswrold.bean.StartUser;
+import marc.com.lookswrold.fragement.MMFragement;
 import marc.com.lookswrold.services.GetZhihuService;
 import marc.com.lookswrold.fragement.GISFragement;
 import marc.com.lookswrold.fragement.GithubFragement;
@@ -55,7 +56,7 @@ public class Main extends AppCompatActivity
 	Toolbar toolbar;
 	FragmentTransaction trance;
 
-	Main2Fragement main2Fragement;
+	MMFragement main2Fragement;
 	GithubFragement githubFragement;
 	ZhihuFragement zhihuFragement;
 	NewsFragement newsFragement;
@@ -89,7 +90,7 @@ public class Main extends AppCompatActivity
 		initView();
 
 		trance = getSupportFragmentManager().beginTransaction();
-		trance.replace(R.id.frame,new Main2Fragement());
+		trance.replace(R.id.frame,new MMFragement());
 		trance.addToBackStack(null);
 		trance.commit();
 
@@ -102,7 +103,7 @@ public class Main extends AppCompatActivity
 	}
 
 	private void initView(){
-		main2Fragement = new Main2Fragement();
+		main2Fragement = new MMFragement();
 		githubFragement = new GithubFragement();
 		zhihuFragement = new ZhihuFragement();
 		newsFragement = new NewsFragement();
