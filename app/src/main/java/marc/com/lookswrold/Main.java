@@ -25,6 +25,7 @@ import butterknife.ButterKnife;
 import marc.com.lookswrold.activity.FABShow_Hide_Activity;
 import marc.com.lookswrold.activity.NewsActivity;
 import marc.com.lookswrold.activity.PieChartActivity;
+import marc.com.lookswrold.activity.ShijianzhouAcitivity;
 import marc.com.lookswrold.activity.ThreeDActivity;
 import marc.com.lookswrold.bean.StartUser;
 import marc.com.lookswrold.fragement.MMFragement;
@@ -190,7 +191,8 @@ public class Main extends AppCompatActivity
 				startActivity(it);
 				break;
 			case R.id.jump2piechart:
-				startActivity(new Intent(Main.this, FABShow_Hide_Activity.class));
+//				startActivity(new Intent(Main.this, FABShow_Hide_Activity.class));
+				startActivity(new Intent(Main.this, ShijianzhouAcitivity.class));
 				break;
 		}
 		trance.addToBackStack(null);

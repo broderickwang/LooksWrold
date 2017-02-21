@@ -59,6 +59,8 @@
         </activity>
         <activity android:name=".activity.FABShow_Hide_Activity">
         </activity>
+        <activity android:name=".activity.ShijianzhouAcitivity">
+        </activity>
     </application>
 
 </manifest>
