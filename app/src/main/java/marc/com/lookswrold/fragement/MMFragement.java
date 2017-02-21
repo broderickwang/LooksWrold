@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import marc.com.lookswrold.R;
+import marc.com.lookswrold.myview.IndicateView;
 
 /**
  * viewpager的广告轮询
@@ -32,7 +34,9 @@ public class MMFragement extends Fragment {
 	Bitmap b1, b2, b3;
 	List<Bitmap> list_bt = new ArrayList<>();
 	@Bind(R.id.layout)
-	LinearLayout layout;
+	RelativeLayout layout;
+	@Bind(R.id.indicate)
+	IndicateView indicate;
 
 
 	@Nullable
@@ -56,6 +60,24 @@ public class MMFragement extends Fragment {
 		}
 
 		mmViewpager.setAdapter(new T());
+
+		indicate.setViewPager(mmViewpager);
+		indicate.setmListener(new IndicateView.OnPageChangeListener() {
+			@Override
+			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+			}
+
+			@Override
+			public void onPageSelected(int postion) {
+
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int state) {
+
+			}
+		});
 
 		new A().run();
 
