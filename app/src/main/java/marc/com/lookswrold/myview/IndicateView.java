@@ -137,7 +137,7 @@ public class IndicateView extends LinearLayout implements ViewPager.OnPageChange
 		selectBp = drawableToBitamp(ta.getDrawable(R.styleable.IndicateView_selectDrawable));
 		mInterval = ta.getDimensionPixelOffset(R.styleable.IndicateView_indicatorInterval,6);
 		normalColor = ta.getColor(R.styleable.IndicateView_normalColor, Color.GRAY);
-		selectColor = ta.getColor(R.styleable.IndicateView_selectColor,Color.RED);
+		selectColor = ta.getColor(R.styleable.IndicateView_selectColor,Color.rgb(52,184,244));
 		mRadius = ta.getInteger(R.styleable.IndicateView_indicatorRadius,6);
 		ta.recycle();
 		init();

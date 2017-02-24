@@ -82,7 +82,8 @@ public class Main extends AppCompatActivity
 		mDrawerToggle = new ActionBarDrawerToggle(this,drawLayout,toolbar,
 				R.string.drawer_open, R.string.drawer_close);
 		mDrawerToggle.syncState();
-		drawLayout.setDrawerListener(mDrawerToggle);
+//		drawLayout.setDrawerListener(mDrawerToggle);
+		drawLayout.addDrawerListener(mDrawerToggle);
 		//navigationicon需要最后设置,不然无效
 //		toolbar.setOnMenuItemClickListener();
 		toolbar.setNavigationIcon(R.drawable.menu);

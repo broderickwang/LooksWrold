@@ -14,6 +14,7 @@ import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -84,6 +85,9 @@ public class WebRecyActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_web_recy);
 		ButterKnife.bind(this);
+
+		//透明状态栏
+		//getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
 		dlg = ProgressDialog.show(this, null, "Loading...");
 		dlg.show();
