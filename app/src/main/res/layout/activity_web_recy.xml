@@ -52,7 +52,17 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin" />
+                app:layout_collapseMode="pin"/>
+            <!--style="@style/ZhiHuWebViewToolbar"-->
+            <TextView
+                android:id="@+id/col_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="120px"
+                android:text="text"
+                android:gravity="center"
+                android:textSize="40px"
+                android:visibility="gone"/>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 </android.support.design.widget.CoordinatorLayout>

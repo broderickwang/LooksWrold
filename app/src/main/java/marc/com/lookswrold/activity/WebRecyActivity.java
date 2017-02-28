@@ -2,7 +2,6 @@ package marc.com.lookswrold.activity;
 
 import android.app.ProgressDialog;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -14,19 +13,15 @@ import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.facebook.imagepipeline.request.ImageRequest;
-import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
 import java.util.List;
 
@@ -55,6 +50,8 @@ public class WebRecyActivity extends AppCompatActivity {
 
 	@Bind(R.id.my_image_draweeview)
 	SimpleDraweeView myImageDraweeview;
+	@Bind(R.id.col_title)
+	TextView colTitle;
 	private CollapsingToolbarLayoutState state;
 
 	private enum CollapsingToolbarLayoutState {
@@ -124,11 +121,12 @@ public class WebRecyActivity extends AppCompatActivity {
 			public void onResponse(Call<ZhihuDescBean> call, Response<ZhihuDescBean> response) {
 
 				collapsingToolbarLayout.setTitle(response.body().getTitle());
+				colTitle.setText(response.body().getTitle());
 
 				Glide.with(WebRecyActivity.this)
 						.load(response.body().getImage())
 						.into(recywebImg);
-				FrescoUtils.loadImageViaDraweeController(myImageDraweeview,response.body().getImage());
+				FrescoUtils.loadImageViaDraweeController(myImageDraweeview, response.body().getImage());
 
 				//rxjava demo -added by marc
 				Observable.create(new Observable.OnSubscribe<Object>() {
@@ -168,7 +166,7 @@ public class WebRecyActivity extends AppCompatActivity {
 	private void initToolbar() {
 		setSupportActionBar(toolbar);
 		/*getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.left2));*/
+		toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.left3));*/
 		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -178,7 +176,7 @@ public class WebRecyActivity extends AppCompatActivity {
 		//使用CollapsingToolbarLayout必须把title设置到CollapsingToolbarLayout上，设置到Toolbar上则不会显示
 		//通过CollapsingToolbarLayout修改字体颜色
 		collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);//设置还没收缩时状态下字体颜色
-		collapsingToolbarLayout.setCollapsedTitleTextColor(Color.GREEN);//设置收缩后Toolbar上字体的颜色
+		collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);//设置收缩后Toolbar上字体的颜色
 
 		// TODO: 2016/11/7  do something later!!!
 		appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
